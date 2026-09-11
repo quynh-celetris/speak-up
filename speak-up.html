@@ -1,0 +1,1457 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Speak Up — focused practice for extended English responses at CEFR B2/C1 level.">
+  <meta name="theme-color" content="#f4f7fb">
+  <title>Speak Up — English communication practice</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%234f46e5'/%3E%3Cpath d='M17 33v-4m8 12V21m8 25V16m8 25V21m8 12v-4' stroke='white' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E">
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f4f7fb;
+      --surface: #ffffff;
+      --surface-2: #edf1f7;
+      --surface-3: #e4e9f2;
+      --text: #172033;
+      --muted: #667085;
+      --line: #d9e0ea;
+      --primary: #4f46e5;
+      --primary-strong: #3730a3;
+      --primary-soft: #e8e7ff;
+      --mint: #0f766e;
+      --mint-soft: #dff7f2;
+      --sky: #0369a1;
+      --sky-soft: #e0f2fe;
+      --amber: #a15c07;
+      --amber-soft: #fff1d6;
+      --danger: #a43b4e;
+      --danger-soft: #ffe8ed;
+      --shadow: 0 18px 50px rgba(31, 42, 68, .08);
+      --radius-lg: 24px;
+      --radius-md: 16px;
+      --radius-sm: 11px;
+    }
+
+    [data-theme="dark"] {
+      color-scheme: dark;
+      --bg: #0d1320;
+      --surface: #151d2c;
+      --surface-2: #1c2637;
+      --surface-3: #263246;
+      --text: #edf2fa;
+      --muted: #a9b4c8;
+      --line: #2b3850;
+      --primary: #938cff;
+      --primary-strong: #b9b5ff;
+      --primary-soft: #292755;
+      --mint: #5ed5c8;
+      --mint-soft: #143d3c;
+      --sky: #7dd3fc;
+      --sky-soft: #15364a;
+      --amber: #ffc46b;
+      --amber-soft: #493518;
+      --danger: #ff9aac;
+      --danger-soft: #4a202a;
+      --shadow: 0 18px 50px rgba(0, 0, 0, .24);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 320px;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 8% 0%, color-mix(in srgb, var(--primary) 9%, transparent), transparent 28rem),
+        var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 16px;
+      line-height: 1.55;
+      transition: background .25s ease, color .25s ease;
+    }
+    button, textarea { font: inherit; }
+    button { color: inherit; }
+    button:focus-visible, textarea:focus-visible {
+      outline: 3px solid color-mix(in srgb, var(--primary) 35%, transparent);
+      outline-offset: 3px;
+    }
+    .app-shell { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
+    .topbar {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      border-bottom: 1px solid var(--line);
+    }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      color: white;
+      background: var(--primary);
+      box-shadow: 0 8px 20px color-mix(in srgb, var(--primary) 28%, transparent);
+    }
+    .brand-name { font-size: 1.08rem; font-weight: 760; letter-spacing: -.02em; }
+    .brand-level { color: var(--muted); font-size: .82rem; margin-top: -2px; }
+    .top-actions { display: flex; gap: 8px; align-items: center; }
+    .settings-menu { position: relative; }
+    .settings-menu > summary { list-style: none; }
+    .settings-menu > summary::-webkit-details-marker { display: none; }
+    .settings-menu[open] > summary { background: var(--primary-soft); color: var(--primary-strong); }
+    .settings-popover {
+      position: absolute;
+      z-index: 20;
+      top: calc(100% + 10px);
+      right: 0;
+      width: min(340px, calc(100vw - 24px));
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+    .settings-section + .settings-section { margin-top: 17px; padding-top: 17px; border-top: 1px solid var(--line); }
+    .settings-popover label { display: block; margin-bottom: 7px; font-size: .88rem; font-weight: 750; }
+    .settings-popover select, .settings-popover input {
+      width: 100%;
+      min-height: 42px;
+      padding: 8px 11px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      color: var(--text);
+      background: var(--surface-2);
+    }
+    .settings-popover select { padding-right: 34px; }
+    .settings-note { margin: 9px 0 0; color: var(--muted); font-size: .79rem; line-height: 1.45; }
+    .settings-note a { color: var(--primary); }
+    .settings-actions { display: flex; gap: 8px; margin-top: 9px; }
+    .settings-actions .primary-btn, .settings-actions .secondary-btn { padding: 8px 12px; font-size: .82rem; }
+    .icon-btn, .text-btn, .primary-btn, .secondary-btn, .toolkit-toggle {
+      border: 0;
+      cursor: pointer;
+      border-radius: 999px;
+      transition: transform .15s ease, background .2s ease, border-color .2s ease, opacity .2s ease;
+    }
+    .icon-btn:hover, .text-btn:hover, .primary-btn:hover, .secondary-btn:hover, .toolkit-toggle:hover { transform: translateY(-1px); }
+    .icon-btn {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      background: var(--surface);
+      border: 1px solid var(--line);
+    }
+    .text-btn { padding: 10px 15px; color: var(--muted); background: transparent; }
+    .text-btn:hover { color: var(--text); background: var(--surface-2); }
+    .primary-btn, .secondary-btn { padding: 12px 18px; font-weight: 700; }
+    .primary-btn { background: var(--primary); color: white; box-shadow: 0 9px 22px color-mix(in srgb, var(--primary) 24%, transparent); }
+    [data-theme="dark"] .primary-btn { color: #111425; }
+    .secondary-btn { background: var(--surface-2); border: 1px solid var(--line); }
+    .primary-btn:disabled, .secondary-btn:disabled { opacity: .45; cursor: not-allowed; transform: none; }
+
+    main { padding: 46px 0 70px; }
+    .view[hidden] { display: none !important; }
+    .eyebrow {
+      color: var(--primary);
+      font-size: .77rem;
+      font-weight: 800;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { max-width: 720px; margin: 12px 0 12px; font-size: clamp(2.35rem, 7vw, 4.8rem); line-height: .98; letter-spacing: -.065em; }
+    .intro { max-width: 650px; color: var(--muted); font-size: 1.08rem; }
+    .picker-heading { display: flex; justify-content: space-between; gap: 24px; align-items: end; margin-bottom: 30px; }
+    .session-chip {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 10px 14px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      border-radius: 999px;
+      color: var(--muted);
+    }
+    .session-chip strong { color: var(--text); }
+    .prompt-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+    .prompt-card {
+      text-align: left;
+      width: 100%;
+      min-height: 248px;
+      padding: 25px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      color: var(--text);
+      background: var(--surface);
+      box-shadow: 0 4px 16px rgba(31, 42, 68, .025);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease;
+    }
+    .prompt-card:hover { transform: translateY(-4px); border-color: color-mix(in srgb, var(--primary) 48%, var(--line)); box-shadow: var(--shadow); }
+    .card-top { display: flex; justify-content: space-between; gap: 14px; align-items: start; margin-bottom: 24px; }
+    .card-index { color: var(--muted); font-variant-numeric: tabular-nums; font-size: .84rem; }
+    .card-arrow { color: var(--primary); font-size: 1.25rem; }
+    .prompt-card h2 { font-size: 1.34rem; line-height: 1.2; letter-spacing: -.025em; margin-bottom: 10px; }
+    .prompt-card p { margin: 0; color: var(--muted); }
+    .card-footer { margin-top: auto; padding-top: 24px; display: flex; gap: 8px; color: var(--muted); font-size: .84rem; }
+    .mini-tag { padding: 4px 8px; border-radius: 8px; background: var(--surface-2); }
+
+    .practice-header { display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: start; margin: 6px 0 26px; }
+    .practice-header h1 { font-size: clamp(1.9rem, 5vw, 3.25rem); max-width: 880px; line-height: 1.08; }
+    .prompt-copy { max-width: 890px; color: var(--muted); font-size: 1.08rem; }
+    .listen-btn { display: inline-flex; align-items: center; gap: 8px; margin-top: 5px; }
+    .work-grid { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(280px, .72fr); gap: 22px; align-items: start; }
+    .panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg); box-shadow: var(--shadow); }
+    .recorder-panel { padding: clamp(22px, 4vw, 34px); }
+    .recorder-status { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 24px; }
+    .status-label { display: flex; align-items: center; gap: 9px; font-weight: 700; }
+    .status-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--muted); }
+    .is-recording .status-dot { background: #ef476f; box-shadow: 0 0 0 7px rgba(239, 71, 111, .12); animation: pulse 1.4s infinite; }
+    @keyframes pulse { 50% { transform: scale(.72); opacity: .72; } }
+    .timer { font-size: clamp(1.7rem, 4vw, 2.45rem); font-weight: 680; letter-spacing: -.04em; font-variant-numeric: tabular-nums; }
+    .prompt-context {
+      display: none;
+      margin-bottom: 18px;
+      padding: 14px 16px;
+      background: var(--primary-soft);
+      border-radius: var(--radius-sm);
+      color: var(--primary-strong);
+      font-weight: 650;
+    }
+    .prompt-context.show { display: block; }
+    .transcript-wrap { position: relative; }
+    .transcript {
+      min-height: 250px;
+      max-height: 420px;
+      overflow-y: auto;
+      padding: 20px;
+      white-space: pre-wrap;
+      background: var(--surface-2);
+      border: 1px solid transparent;
+      border-radius: var(--radius-md);
+      font-size: 1.05rem;
+      line-height: 1.75;
+    }
+    .transcript.empty { color: var(--muted); }
+    .interim { color: var(--muted); }
+    mark { border-radius: 4px; padding: 1px 2px; color: inherit; }
+    mark.filler { background: var(--amber-soft); text-decoration: underline wavy var(--amber); text-underline-offset: 3px; }
+    mark.structure { background: var(--mint-soft); color: var(--mint); font-weight: 700; }
+    .vocab-highlight {
+      display: inline;
+      padding: 1px 3px;
+      border: 0;
+      border-radius: 4px;
+      color: var(--sky);
+      background: var(--sky-soft);
+      font: inherit;
+      font-weight: 750;
+      line-height: inherit;
+      text-decoration: underline dotted currentColor;
+      text-underline-offset: 3px;
+      cursor: pointer;
+    }
+    .vocab-highlight:hover, .vocab-highlight:focus-visible { filter: brightness(.96); }
+    .vocab-popover {
+      position: fixed;
+      z-index: 100;
+      width: min(290px, calc(100vw - 20px));
+      padding: 13px 14px;
+      border: 1px solid color-mix(in srgb, var(--sky) 36%, var(--line));
+      border-radius: 12px;
+      color: var(--text);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      font-size: .86rem;
+      line-height: 1.5;
+    }
+    .vocab-popover[hidden] { display: none; }
+    .vocab-popover strong { display: block; margin-bottom: 5px; color: var(--sky); }
+    .recorder-controls { margin-top: 23px; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+    .mic-btn {
+      width: 92px;
+      height: 92px;
+      display: grid;
+      place-items: center;
+      border: 0;
+      border-radius: 50%;
+      color: white;
+      background: var(--primary);
+      cursor: pointer;
+      box-shadow: 0 14px 34px color-mix(in srgb, var(--primary) 34%, transparent);
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+    .mic-btn:hover { transform: scale(1.035); }
+    .mic-btn.active { background: #d9345f; box-shadow: 0 0 0 10px rgba(217, 52, 95, .1), 0 14px 34px rgba(217, 52, 95, .25); }
+    .mic-btn svg { width: 32px; height: 32px; }
+    .control-hint { color: var(--muted); font-size: .9rem; text-align: center; }
+    .nudge { min-height: 25px; margin: 16px 0 0; text-align: center; color: var(--amber); font-size: .93rem; }
+    .speech-alert { display: none; padding: 15px 17px; margin-bottom: 18px; border: 1px solid color-mix(in srgb, var(--amber) 30%, var(--line)); border-radius: var(--radius-sm); background: var(--amber-soft); color: var(--text); }
+    .speech-alert.show { display: block; }
+    .fallback { display: none; }
+    .fallback.show { display: block; }
+    .fallback textarea { width: 100%; min-height: 250px; resize: vertical; padding: 18px; color: var(--text); background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--radius-md); line-height: 1.65; }
+    .fallback-actions { display: flex; justify-content: center; gap: 10px; margin-top: 16px; flex-wrap: wrap; }
+
+    .toolkit { overflow: hidden; }
+    .toolkit-toggle { width: 100%; padding: 20px 22px; display: flex; align-items: center; justify-content: space-between; background: transparent; text-align: left; }
+    .toolkit-toggle strong { display: block; font-size: 1rem; }
+    .toolkit-toggle span { color: var(--muted); font-size: .86rem; }
+    .toolkit-body { padding: 0 22px 22px; }
+    .toolkit-body[hidden] { display: none; }
+    .phrase-group { padding: 17px 0; border-top: 1px solid var(--line); }
+    .phrase-group h3 { color: var(--primary); margin-bottom: 8px; font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; }
+    .phrase-list { display: flex; flex-wrap: wrap; gap: 7px; }
+    .phrase { display: inline-block; padding: 7px 9px; background: var(--surface-2); border-radius: 8px; color: var(--text); font-size: .88rem; }
+    .session-mini { margin-top: 18px; padding: 21px; }
+    .session-mini h2 { font-size: 1rem; margin-bottom: 12px; }
+    .mini-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .mini-stat { padding: 11px; background: var(--surface-2); border-radius: 10px; }
+    .mini-stat strong { display: block; font-size: 1.25rem; }
+    .mini-stat span { color: var(--muted); font-size: .79rem; }
+
+    .feedback { margin-top: 22px; padding: clamp(22px, 4vw, 32px); }
+    .feedback[hidden] { display: none; }
+    .feedback-head { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 20px; }
+    .feedback h2 { margin: 0; font-size: 1.35rem; }
+    .response-kind { color: var(--muted); font-size: .84rem; }
+    .metric-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 11px; }
+    .metric { padding: 16px; border-radius: 13px; background: var(--surface-2); }
+    .metric-value { display: block; font-size: 1.65rem; font-weight: 750; line-height: 1.1; letter-spacing: -.035em; }
+    .metric-label { color: var(--muted); font-size: .82rem; }
+    .feedback-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 14px; }
+    .feedback-card { padding: 18px; border: 1px solid var(--line); border-radius: 14px; }
+    .feedback-card h3 { margin-bottom: 8px; font-size: .95rem; }
+    .feedback-card p { margin-bottom: 0; color: var(--muted); }
+    .category-chips { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 11px; }
+    .category-chip { padding: 5px 8px; border-radius: 999px; font-size: .78rem; background: var(--surface-2); color: var(--muted); }
+    .category-chip.used { background: var(--mint-soft); color: var(--mint); }
+    .category-chip.missing { background: var(--amber-soft); color: var(--amber); }
+    .short-flag { margin-top: 14px; padding: 14px 16px; background: var(--amber-soft); border-radius: 12px; color: var(--amber); }
+    .language-feedback { margin-top: 14px; padding: 20px; border: 1px solid var(--line); border-radius: 14px; }
+    .language-feedback-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 6px; }
+    .language-feedback-head h3 { margin: 0; font-size: 1rem; }
+    .source-badge { padding: 4px 8px; border-radius: 999px; color: var(--primary-strong); background: var(--primary-soft); font-size: .74rem; font-weight: 750; }
+    .privacy-note { margin: 0; color: var(--muted); font-size: .84rem; }
+    .language-status { margin-top: 15px; padding: 13px 14px; border-radius: 10px; background: var(--surface-2); color: var(--muted); }
+    .language-status.loading::before {
+      content: '';
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      margin-right: 9px;
+      border: 2px solid var(--line);
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin .8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .language-list { list-style: none; padding: 0; margin: 14px 0 0; display: grid; gap: 9px; }
+    .language-list[hidden] { display: none; }
+    .language-item { padding: 13px 14px; border-radius: 11px; background: var(--surface-2); }
+    .language-item q { color: var(--danger); font-weight: 750; }
+    .language-item .correction { color: var(--mint); font-weight: 750; }
+    .language-reason { display: block; margin-top: 5px; color: var(--muted); font-size: .86rem; }
+    .elevated-feedback { margin-top: 14px; padding: 20px; border: 1px solid color-mix(in srgb, var(--primary) 30%, var(--line)); border-radius: 14px; background: color-mix(in srgb, var(--primary-soft) 38%, var(--surface)); }
+    .elevated-copy { margin-top: 14px; padding: 18px; border-left: 3px solid var(--primary); border-radius: 0 11px 11px 0; background: var(--surface); line-height: 1.75; }
+    .elevated-copy[hidden] { display: none; }
+    .elevated-actions { display: flex; gap: 9px; align-items: center; flex-wrap: wrap; margin-top: 13px; }
+    .elevated-actions[hidden] { display: none; }
+    .elevated-actions .primary-btn, .elevated-actions .secondary-btn { padding: 9px 13px; font-size: .84rem; }
+    .probe { margin-top: 22px; padding: 22px; border-radius: var(--radius-md); background: linear-gradient(135deg, var(--primary-soft), var(--mint-soft)); }
+    .probe .eyebrow { margin-bottom: 7px; }
+    .probe h3 { font-size: 1.25rem; margin-bottom: 14px; }
+    .feedback-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
+
+    .summary-wrap { max-width: 940px; margin: 0 auto; }
+    .summary-title { display: flex; justify-content: space-between; gap: 20px; align-items: end; margin-bottom: 26px; }
+    .summary-title h1 { font-size: clamp(2.2rem, 6vw, 4rem); margin-bottom: 6px; }
+    .summary-title p { color: var(--muted); margin-bottom: 0; }
+    .summary-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .summary-card { padding: 23px; }
+    .summary-card.wide { grid-column: span 2; }
+    .summary-card h2 { font-size: 1rem; color: var(--muted); margin-bottom: 14px; }
+    .big-number { font-size: 2.6rem; font-weight: 760; letter-spacing: -.05em; line-height: 1; }
+    .big-caption { color: var(--muted); margin-top: 8px; }
+    .trend-bars { height: 118px; display: flex; gap: 8px; align-items: end; padding-top: 8px; }
+    .trend-bar { flex: 1; min-width: 10px; max-width: 34px; background: var(--primary); border-radius: 6px 6px 3px 3px; position: relative; }
+    .trend-bar span { position: absolute; left: 50%; bottom: calc(100% + 4px); transform: translateX(-50%); color: var(--muted); font-size: .72rem; }
+    .coverage-row { display: grid; grid-template-columns: 110px 1fr 34px; gap: 10px; align-items: center; margin: 12px 0; font-size: .88rem; }
+    .coverage-track { height: 8px; border-radius: 99px; background: var(--surface-3); overflow: hidden; }
+    .coverage-fill { height: 100%; border-radius: inherit; background: var(--mint); }
+    .empty-session { padding: 34px; color: var(--muted); text-align: center; }
+    .history-list { display: grid; gap: 9px; }
+    .history-item { display: grid; grid-template-columns: 1fr auto; gap: 15px; padding: 13px 0; border-top: 1px solid var(--line); }
+    .history-item:first-child { border-top: 0; }
+    .history-item strong { display: block; }
+    .history-item span { color: var(--muted); font-size: .82rem; }
+    .history-meta { white-space: nowrap; text-align: right; }
+
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+    @media (max-width: 840px) {
+      .work-grid { grid-template-columns: 1fr; }
+      .toolkit-column { display: contents; }
+      .toolkit { order: -1; }
+      .metric-grid { grid-template-columns: repeat(2, 1fr); }
+      .summary-grid { grid-template-columns: 1fr 1fr; }
+      .summary-card.wide { grid-column: span 2; }
+    }
+    @media (max-width: 650px) {
+      .app-shell { width: min(100% - 24px, 1180px); }
+      .topbar { min-height: 68px; }
+      .brand-level { display: none; }
+      main { padding: 32px 0 52px; }
+      .picker-heading, .practice-header, .summary-title { display: block; }
+      .session-chip { margin-top: 12px; }
+      .prompt-grid { grid-template-columns: 1fr; }
+      .prompt-card { min-height: 215px; padding: 21px; }
+      .practice-header .listen-btn { margin-top: 10px; }
+      .metric-grid, .feedback-grid, .summary-grid { grid-template-columns: 1fr; }
+      .summary-card.wide { grid-column: span 1; }
+      .mic-btn { width: 82px; height: 82px; }
+      .feedback-head { align-items: start; }
+      .coverage-row { grid-template-columns: 96px 1fr 30px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand" aria-label="Speak Up home">
+        <div class="brand-mark" aria-hidden="true">
+          <svg width="23" height="23" viewBox="0 0 24 24" fill="none"><path d="M4 13v-2m4 6V7m4 13V4m4 13V7m4 6v-2" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+        </div>
+        <div><div class="brand-name">Speak Up</div><div class="brand-level">Extended speaking · B2/C1</div></div>
+      </div>
+      <div class="top-actions">
+        <button class="text-btn" id="summaryButton" type="button">Session <span id="headerCount">0</span></button>
+        <details class="settings-menu" id="settingsMenu">
+          <summary class="icon-btn" aria-label="Settings" title="Settings">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 15.25A3.25 3.25 0 1 0 12 8.75a3.25 3.25 0 0 0 0 6.5Z" stroke="currentColor" stroke-width="1.8"/><path d="M19.2 13.1a7.8 7.8 0 0 0 0-2.2l2-1.55-2-3.46-2.47 1a8.6 8.6 0 0 0-1.9-1.1L14.5 3h-5l-.33 2.79a8.6 8.6 0 0 0-1.9 1.1l-2.47-1-2 3.46 2 1.55a7.8 7.8 0 0 0 0 2.2l-2 1.55 2 3.46 2.47-1a8.6 8.6 0 0 0 1.9 1.1L9.5 21h5l.33-2.79a8.6 8.6 0 0 0 1.9-1.1l2.47 1 2-3.46-2-1.55Z" stroke="currentColor" stroke-width="1.45" stroke-linejoin="round"/></svg>
+          </summary>
+          <div class="settings-popover">
+            <div class="settings-section">
+              <label for="voiceSelect">Prompt voice</label>
+              <select id="voiceSelect"><option value="auto">Automatic — best English voice</option></select>
+              <p class="settings-note" id="voiceNote">Loading the voices installed in your browser…</p>
+            </div>
+            <div class="settings-section">
+              <label for="geminiApiKey">Gemini API key</label>
+              <input id="geminiApiKey" type="password" autocomplete="off" spellcheck="false" placeholder="Paste your key once">
+              <div class="settings-actions">
+                <button class="primary-btn" id="saveGeminiKey" type="button">Save key</button>
+                <button class="secondary-btn" id="removeGeminiKey" type="button">Remove</button>
+              </div>
+              <p class="settings-note" id="geminiKeyStatus">Used only for C1 rewrites and saved in this browser's local storage. Get a free key from <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener noreferrer">Google AI Studio</a>.</p>
+            </div>
+          </div>
+        </details>
+        <button class="icon-btn" id="themeToggle" type="button" aria-label="Switch to dark mode" title="Switch theme">
+          <svg id="themeIcon" width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="view" id="pickerView" aria-labelledby="pickerTitle">
+        <div class="picker-heading">
+          <div>
+            <div class="eyebrow">Choose a line of thought</div>
+            <h1 id="pickerTitle">Think deeply.<br>Speak clearly.</h1>
+            <p class="intro">Practise building a sustained answer with a clear position, developed reasons, concrete examples, and a considered conclusion.</p>
+          </div>
+          <div class="session-chip"><strong id="pickerCount">0</strong> responses this session</div>
+        </div>
+        <div class="prompt-grid" id="promptGrid"></div>
+      </section>
+
+      <section class="view" id="practiceView" hidden aria-labelledby="practiceTitle">
+        <button class="text-btn" id="backButton" type="button">← All prompts</button>
+        <div class="practice-header">
+          <div>
+            <div class="eyebrow" id="practiceTopic">Prompt</div>
+            <h1 id="practiceTitle"></h1>
+            <p class="prompt-copy" id="practiceQuestion"></p>
+          </div>
+          <button class="secondary-btn listen-btn" id="listenButton" type="button" aria-label="Read prompt aloud">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M11 5 6.5 9H3v6h3.5l4.5 4V5Zm4.5 3.5a5 5 0 0 1 0 7m2.5-10a9 9 0 0 1 0 13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Hear prompt
+          </button>
+        </div>
+
+        <div class="work-grid">
+          <div>
+            <section class="panel recorder-panel" id="recorderPanel" aria-label="Response recorder">
+              <div class="recorder-status">
+                <div class="status-label"><span class="status-dot"></span><span id="statusText">Ready when you are</span></div>
+                <time class="timer" id="timer" datetime="PT0S">00:00</time>
+              </div>
+              <div class="prompt-context" id="promptContext"></div>
+              <div class="speech-alert" id="speechAlert" role="status"></div>
+              <div id="speechMode">
+                <div class="transcript-wrap">
+                  <div class="transcript empty" id="transcript" aria-live="polite">Your live transcript will appear here. Aim for at least two minutes and develop more than one angle.</div>
+                </div>
+                <div class="recorder-controls">
+                  <button class="mic-btn" id="micButton" type="button" aria-label="Start recording">
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="8" y="3" width="8" height="12" rx="4" stroke="currentColor" stroke-width="2"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3m-4 0h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                  </button>
+                  <div class="control-hint" id="controlHint">Press to start · Chrome may ask for microphone access</div>
+                </div>
+              </div>
+              <div class="fallback" id="fallbackMode">
+                <label class="sr-only" for="fallbackText">Type your response</label>
+                <textarea id="fallbackText" placeholder="Type your extended response here…"></textarea>
+                <div class="fallback-actions">
+                  <button class="secondary-btn" id="typeTimerButton" type="button">Start timed response</button>
+                  <button class="primary-btn" id="analyzeTypedButton" type="button">Analyze response</button>
+                </div>
+              </div>
+              <p class="nudge" id="nudge" aria-live="polite"></p>
+            </section>
+
+            <section class="panel feedback" id="feedbackPanel" hidden aria-labelledby="feedbackTitle">
+              <div class="feedback-head"><h2 id="feedbackTitle">Response feedback</h2><span class="response-kind" id="responseKind"></span></div>
+              <div class="metric-grid">
+                <div class="metric"><span class="metric-value" id="wordMetric">0</span><span class="metric-label">words</span></div>
+                <div class="metric"><span class="metric-value" id="sentenceMetric">0</span><span class="metric-label">sentences</span></div>
+                <div class="metric"><span class="metric-value" id="paceMetric">0</span><span class="metric-label">words / minute</span></div>
+                <div class="metric"><span class="metric-value" id="fillerMetric">0</span><span class="metric-label">fillers noticed</span></div>
+              </div>
+              <div class="feedback-grid">
+                <div class="feedback-card"><h3>Depth of development</h3><p id="depthFeedback"></p></div>
+                <div class="feedback-card"><h3>Structure language</h3><p id="structureFeedback"></p><div class="category-chips" id="categoryChips"></div></div>
+              </div>
+              <section class="language-feedback" aria-labelledby="languageFeedbackTitle">
+                <div class="language-feedback-head"><h3 id="languageFeedbackTitle">Language feedback</h3><span class="source-badge">LanguageTool</span></div>
+                <p class="privacy-note">Your transcript is sent to LanguageTool for this grammar check. Speak Up does not store it.</p>
+                <div class="language-status" id="grammarStatus" role="status">Waiting for a response to review.</div>
+                <ul class="language-list" id="grammarList" hidden></ul>
+              </section>
+              <section class="elevated-feedback" aria-labelledby="elevatedTitle">
+                <div class="language-feedback-head"><h3 id="elevatedTitle">Your response, elevated</h3><span class="source-badge">AI-generated · Gemini</span></div>
+                <p class="privacy-note">A C1-level comparison generated from your ideas. This is AI wording, not your original transcript.</p>
+                <div class="language-status" id="elevatedStatus" role="status">Add a Gemini API key to generate an elevated version.</div>
+                <div class="elevated-copy" id="elevatedCopy" hidden></div>
+                <div class="elevated-actions" id="elevatedActions">
+                  <button class="secondary-btn" id="addGeminiKeyButton" type="button">Add Gemini key</button>
+                  <button class="primary-btn" id="copyElevatedButton" type="button" hidden>Copy</button>
+                </div>
+              </section>
+              <div class="short-flag" id="shortFlag" hidden></div>
+              <div class="probe" id="probeBox">
+                <div class="eyebrow">Go one layer deeper</div>
+                <h3 id="probeQuestion"></h3>
+                <button class="primary-btn" id="answerProbeButton" type="button">Answer this follow-up</button>
+              </div>
+              <div class="feedback-actions">
+                <button class="secondary-btn" id="retryButton" type="button">Try this prompt again</button>
+                <button class="secondary-btn" id="nextPromptButton" type="button">Choose another prompt</button>
+              </div>
+            </section>
+          </div>
+
+          <aside class="toolkit-column">
+            <section class="panel toolkit">
+              <button class="toolkit-toggle" id="toolkitToggle" type="button" aria-expanded="false" aria-controls="toolkitBody">
+                <span><strong>Structure toolkit</strong><span>Reveal when you want a scaffold</span></span><span id="toolkitChevron">＋</span>
+              </button>
+              <div class="toolkit-body" id="toolkitBody" hidden></div>
+            </section>
+            <section class="panel session-mini" aria-label="Session at a glance">
+              <h2>This session</h2>
+              <div class="mini-stats">
+                <div class="mini-stat"><strong id="miniResponses">0</strong><span>responses</span></div>
+                <div class="mini-stat"><strong id="miniAverage">—</strong><span>avg. words</span></div>
+              </div>
+            </section>
+          </aside>
+        </div>
+      </section>
+
+      <section class="view summary-wrap" id="summaryView" hidden aria-labelledby="summaryTitle">
+        <div class="summary-title">
+          <div><div class="eyebrow">Your work today</div><h1 id="summaryTitle">Session summary</h1><p>Everything here resets when you close or refresh this page.</p></div>
+          <button class="primary-btn" id="returnToPrompts" type="button">Practise another prompt</button>
+        </div>
+        <div id="summaryContent"></div>
+      </section>
+    </main>
+  </div>
+
+  <div class="vocab-popover" id="vocabPopover" role="dialog" aria-label="Advanced vocabulary alternatives" hidden></div>
+
+  <script>
+    'use strict';
+
+    const prompts = [
+      { id: 1, title: 'Two offers, one decision', tags: ['Work', 'Priorities'], question: 'Imagine choosing between two job offers: one pays more but seems stressful, while the other offers better balance and more interesting work. Give a two-to-three-minute answer explaining what you would choose, which factors matter most, a real or imagined example, and what trade-off you would be willing to accept.' },
+      { id: 2, title: 'Staying close or moving away?', tags: ['Family', 'Independence'], question: 'Is it better to live close to family or move farther away for greater independence and opportunity? State your view, explore the emotional and practical sides, give an example from real life or a possible situation, and conclude by explaining when the opposite choice might make more sense.' },
+      { id: 3, title: 'Who is shaping your choices?', tags: ['Social media', 'Influence'], question: 'How much should people let social media influence what they buy, where they go, or how they live? Speak for two or three minutes: take a position, explain both the useful and harmful effects, give a concrete example, and finish with a rule or boundary you think people should follow.' },
+      { id: 4, title: 'Can money buy happiness?', tags: ['Money', 'Well-being'], question: 'Can money genuinely make people happier, and does there come a point when having more stops making much difference? Develop your answer by stating your view, separating needs from wants, using an example, considering an opposing perspective, and reaching a balanced conclusion.' },
+      { id: 5, title: 'When a friendship should end', tags: ['Relationships', 'Boundaries'], question: 'How can someone know when it is time to step away from a friendship rather than keep trying to repair it? Give a thoughtful multi-part answer: explain the signs you would pay attention to, distinguish a difficult period from a lasting problem, offer an example, and conclude with the fairest way to handle the decision.' },
+      { id: 6, title: 'Home or office?', tags: ['Work life', 'Balance'], question: 'For most people, is working from home better than working in an office? Take a clear position, compare productivity, relationships, flexibility, and well-being, illustrate your reasoning with an example, and end by explaining what kind of compromise would work best.' },
+      { id: 7, title: 'Plan it or let it happen?', tags: ['Life choices', 'Uncertainty'], question: 'How much should a person plan their life, and how much should they leave open to chance? Build a two-to-three-minute response with your position, reasons for both planning and flexibility, a personal or hypothetical example, and a conclusion about how to balance control with unexpected opportunities.' },
+      { id: 8, title: 'What makes a trip worth it?', tags: ['Travel', 'Experience'], question: 'What makes a trip feel truly worthwhile: comfort, adventure, time with people, learning something new, or something else? Explain your priorities, compare different kinds of trips, give a detailed example, acknowledge a trade-off such as cost or time, and finish with your own definition of a trip worth taking.' }
+    ];
+
+    const toolkit = {
+      opening: ['My view is that…', 'If I had to pick a side…', 'The way I see it…'],
+      sequencing: ['To begin with…', 'That said…', 'Building on that…', 'A further point is…'],
+      contrasting: ['Admittedly…', 'On the other hand…', 'Even so…', 'While that may be true…'],
+      illustrating: ['A good example of this is…', 'To put this in perspective…', 'Consider the case of…'],
+      closing: ['Taking all this into account…', 'Ultimately…', 'On balance…']
+    };
+    const categoryNames = { opening: 'Opening', sequencing: 'Sequencing', contrasting: 'Contrasting', illustrating: 'Illustrating', closing: 'Closing' };
+    const probes = [
+      'What is the strongest counterargument to what you just said, and how would you respond?',
+      'Can you give a concrete example that tests your main claim?',
+      'How would your answer change in a different cultural, professional, or personal context?',
+      'What assumption is your answer based on, and what happens if that assumption is wrong?',
+      'Which part of this issue are people most likely to oversimplify, and why?',
+      'What practical action follows from your view, and what obstacle might prevent it?'
+    ];
+    const fillerTerms = ['you know', 'basically', 'actually', 'um', 'uh', 'like'];
+    const advancedLanguageMap = {
+      'a lot of': ['a considerable amount of', 'a substantial number of', 'numerous'],
+      'more and more': ['increasingly', 'with growing frequency', 'to an increasing extent'],
+      'in my opinion': ['from my perspective', 'in my assessment', 'as I see it'],
+      'big problem': ['significant issue', 'substantial obstacle', 'major concern'],
+      'good thing': ['positive development', 'clear advantage', 'beneficial outcome'],
+      'bad thing': ['negative consequence', 'serious drawback', 'unfavorable outcome'],
+      'deal with': ['address', 'tackle', 'navigate'],
+      'find out': ['discover', 'determine', 'establish'],
+      'talk about': ['discuss', 'examine', 'address'],
+      'I think': ['I would argue that', 'I maintain that', 'I am of the view that'],
+      'good': ['favorable', 'commendable', 'solid'],
+      'bad': ['detrimental', 'unfavorable', 'problematic'],
+      'big': ['substantial', 'considerable', 'significant'],
+      'small': ['modest', 'limited', 'marginal'],
+      'important': ['significant', 'crucial', 'consequential'],
+      'interesting': ['compelling', 'thought-provoking', 'noteworthy'],
+      'difficult': ['challenging', 'demanding', 'complex'],
+      'easy': ['straightforward', 'manageable', 'accessible'],
+      'happy': ['content', 'fulfilled', 'delighted'],
+      'sad': ['disheartened', 'distressed', 'sorrowful'],
+      'think': ['contend', 'maintain', 'take the view'],
+      'believe': ['maintain', 'hold that', 'am convinced that'],
+      'say': ['argue', 'suggest', 'assert'],
+      'show': ['demonstrate', 'illustrate', 'reveal'],
+      'get': ['obtain', 'become', 'receive'],
+      'help': ['assist', 'facilitate', 'support'],
+      'need': ['require', 'call for', 'necessitate'],
+      'want': ['seek', 'intend', 'be inclined to'],
+      'use': ['employ', 'utilize', 'draw on'],
+      'make': ['create', 'produce', 'bring about'],
+      'change': ['alter', 'transform', 'shift'],
+      'problem': ['issue', 'obstacle', 'complication'],
+      'idea': ['concept', 'proposal', 'perspective'],
+      'reason': ['rationale', 'justification', 'underlying factor'],
+      'result': ['outcome', 'consequence', 'implication'],
+      'many': ['numerous', 'a wide range of', 'a substantial number of'],
+      'very': ['particularly', 'highly', 'exceptionally'],
+      'really': ['genuinely', 'particularly', 'to a great extent'],
+      'maybe': ['perhaps', 'conceivably', 'it is possible that'],
+      'because': ['given that', 'owing to the fact that', 'since'],
+      'but': ['however', 'nevertheless', 'yet'],
+      'also': ['furthermore', 'in addition', 'likewise'],
+      'so': ['therefore', 'consequently', 'as a result'],
+      'nowadays': ['at present', 'in contemporary society', 'in recent years'],
+      'thing': ['aspect', 'factor', 'matter'],
+      'people': ['individuals', 'members of society', 'the public']
+    };
+    const GEMINI_MODEL = 'gemini-3.8-flash';
+    const GEMINI_KEY_STORAGE = 'speakUpGeminiApiKey';
+    const GEMINI_REWRITE_INSTRUCTION = 'Rewrite the following spoken response as a single polished paragraph at CEFR C1 level. Preserve the speaker\'s actual ideas, opinions, and argument structure — do not add new content or change their position. Fix grammar naturally and use more sophisticated vocabulary and phrasing where appropriate. Return only the rewritten paragraph, nothing else.';
+    const els = Object.fromEntries([...document.querySelectorAll('[id]')].map(el => [el.id, el]));
+    const session = [];
+    let availableVoices = [];
+    let selectedVoiceURI = 'auto';
+    let currentPrompt = null;
+    let currentProbe = '';
+    let responseType = 'main';
+    let recognition = null;
+    let isRecording = false;
+    let shouldRestartRecognition = false;
+    let finalTranscript = '';
+    let interimTranscript = '';
+    let startedAt = 0;
+    let elapsedSeconds = 0;
+    let timerInterval = null;
+    let typingTimerActive = false;
+    let languageRequestController = null;
+    let geminiRequestController = null;
+    let geminiApiKey = '';
+    let lastCompletedTranscript = '';
+    let elevatedResponseText = '';
+
+    function escapeHTML(value) {
+      return value.replace(/[&<>'"]/g, char => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', "'":'&#39;', '"':'&quot;' }[char]));
+    }
+
+    function normalizePhrase(phrase) { return phrase.replace(/…/g, '').replace(/[.?!]+$/g, '').trim(); }
+
+    function renderPromptGrid() {
+      els.promptGrid.innerHTML = prompts.map((prompt, index) => `
+        <button class="prompt-card" type="button" data-prompt-id="${prompt.id}">
+          <span class="card-top"><span class="card-index">${String(index + 1).padStart(2, '0')}</span><span class="card-arrow">↗</span></span>
+          <h2>${escapeHTML(prompt.title)}</h2>
+          <p>${escapeHTML(prompt.question)}</p>
+          <span class="card-footer">${prompt.tags.map(tag => `<span class="mini-tag">${escapeHTML(tag)}</span>`).join('')}</span>
+        </button>`).join('');
+    }
+
+    function renderToolkit() {
+      els.toolkitBody.innerHTML = Object.entries(toolkit).map(([category, phrases]) => `
+        <div class="phrase-group"><h3>${categoryNames[category]}</h3><div class="phrase-list">${phrases.map(phrase => `<span class="phrase">${escapeHTML(phrase)}</span>`).join('')}</div></div>`).join('');
+    }
+
+    function showView(name) {
+      ['pickerView', 'practiceView', 'summaryView'].forEach(id => { els[id].hidden = id !== name; });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function pickBestEnglishVoice() {
+      const englishVoices = availableVoices.filter(voice => /^en(?:[-_]|$)/i.test(voice.lang));
+      return englishVoices.find(voice => /enhanced|premium/i.test(voice.name))
+        || englishVoices.find(voice => /google/i.test(voice.name))
+        || englishVoices.find(voice => /^en[-_](US|GB)$/i.test(voice.lang))
+        || availableVoices.find(voice => voice.default)
+        || null;
+    }
+
+    function getSelectedVoice() {
+      if (selectedVoiceURI !== 'auto') {
+        const manualVoice = availableVoices.find(voice => voice.voiceURI === selectedVoiceURI);
+        if (manualVoice) return manualVoice;
+      }
+      return pickBestEnglishVoice();
+    }
+
+    function populateVoicePicker() {
+      const previousChoice = selectedVoiceURI;
+      const autoVoice = pickBestEnglishVoice();
+      els.voiceSelect.innerHTML = `<option value="auto">Automatic${autoVoice ? ` — ${escapeHTML(autoVoice.name)}` : ' — browser default'}</option>`
+        + availableVoices.map(voice => `<option value="${escapeHTML(voice.voiceURI)}">${escapeHTML(voice.name)} · ${escapeHTML(voice.lang)}${voice.default ? ' · default' : ''}</option>`).join('');
+      if (previousChoice === 'auto' || availableVoices.some(voice => voice.voiceURI === previousChoice)) {
+        els.voiceSelect.value = previousChoice;
+      } else {
+        selectedVoiceURI = 'auto';
+        els.voiceSelect.value = 'auto';
+      }
+      els.voiceNote.textContent = availableVoices.length
+        ? `${availableVoices.length} voices available. Your choice lasts for this session.`
+        : 'No voice list is available yet. Speak Up will use the browser default.';
+    }
+
+    function loadVoices() {
+      if (!('speechSynthesis' in window)) return;
+      availableVoices = speechSynthesis.getVoices();
+      populateVoicePicker();
+    }
+
+    function speak(text) {
+      if (!('speechSynthesis' in window)) return;
+      speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      const voice = getSelectedVoice();
+      if (voice) {
+        utterance.voice = voice;
+        utterance.lang = voice.lang;
+      } else {
+        utterance.lang = 'en-US';
+      }
+      utterance.rate = .94;
+      utterance.pitch = 1;
+      speechSynthesis.speak(utterance);
+    }
+
+    function openPrompt(id) {
+      currentPrompt = prompts.find(prompt => prompt.id === Number(id));
+      responseType = 'main';
+      currentProbe = '';
+      els.practiceTopic.textContent = currentPrompt.title;
+      els.practiceTitle.textContent = currentPrompt.title;
+      els.practiceQuestion.textContent = currentPrompt.question;
+      els.promptContext.classList.remove('show');
+      resetRecorder();
+      showView('practiceView');
+      speak(currentPrompt.question);
+    }
+
+    function resetRecorder() {
+      stopRecognition(false);
+      if (languageRequestController) {
+        languageRequestController.abort();
+        languageRequestController = null;
+      }
+      if (geminiRequestController) {
+        geminiRequestController.abort();
+        geminiRequestController = null;
+      }
+      closeVocabPopover();
+      finalTranscript = '';
+      interimTranscript = '';
+      elapsedSeconds = 0;
+      startedAt = 0;
+      typingTimerActive = false;
+      clearInterval(timerInterval);
+      timerInterval = null;
+      els.timer.textContent = '00:00';
+      els.timer.setAttribute('datetime', 'PT0S');
+      els.transcript.className = 'transcript empty';
+      els.transcript.textContent = responseType === 'follow-up' ? 'Develop your follow-up answer here. You can challenge, qualify, or extend your first response.' : 'Your live transcript will appear here. Aim for at least two minutes and develop more than one angle.';
+      els.fallbackText.value = '';
+      els.typeTimerButton.textContent = 'Start timed response';
+      els.statusText.textContent = 'Ready when you are';
+      els.recorderPanel.classList.remove('is-recording');
+      els.micButton.classList.remove('active');
+      els.micButton.setAttribute('aria-label', 'Start recording');
+      els.controlHint.textContent = 'Press to start · Chrome may ask for microphone access';
+      els.nudge.textContent = '';
+      els.feedbackPanel.hidden = true;
+      els.speechAlert.classList.remove('show');
+    }
+
+    function formatTime(totalSeconds) {
+      const minutes = Math.floor(totalSeconds / 60).toString().padStart(2, '0');
+      const seconds = Math.floor(totalSeconds % 60).toString().padStart(2, '0');
+      return `${minutes}:${seconds}`;
+    }
+
+    function updateTimer() {
+      elapsedSeconds = Math.max(0, Math.floor((Date.now() - startedAt) / 1000));
+      els.timer.textContent = formatTime(elapsedSeconds);
+      els.timer.setAttribute('datetime', `PT${elapsedSeconds}S`);
+      if (elapsedSeconds === 90) els.nudge.textContent = 'Good foundation. Add one more angle, example, or counterpoint before you conclude.';
+    }
+
+    function startTimer() {
+      clearInterval(timerInterval);
+      startedAt = Date.now() - elapsedSeconds * 1000;
+      updateTimer();
+      timerInterval = setInterval(updateTimer, 500);
+    }
+
+    function stopTimer() {
+      if (startedAt) updateTimer();
+      clearInterval(timerInterval);
+      timerInterval = null;
+    }
+
+    function setupRecognition() {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!SpeechRecognition) {
+        els.speechMode.style.display = 'none';
+        els.fallbackMode.classList.add('show');
+        els.speechAlert.textContent = 'Live speech recognition is not available in this browser. You can still type and time your response below. For microphone practice, open this file in desktop Chrome.';
+        els.speechAlert.classList.add('show');
+        return;
+      }
+      recognition = new SpeechRecognition();
+      recognition.continuous = true;
+      recognition.interimResults = true;
+      recognition.lang = 'en-US';
+      recognition.maxAlternatives = 1;
+
+      recognition.onresult = event => {
+        interimTranscript = '';
+        for (let i = event.resultIndex; i < event.results.length; i++) {
+          const text = event.results[i][0].transcript.replace(/\s+/g, ' ').trim();
+          if (event.results[i].isFinal) {
+            finalTranscript += (finalTranscript ? ' ' : '') + text;
+          } else {
+            interimTranscript += text + ' ';
+          }
+        }
+        renderLiveTranscript();
+      };
+
+      recognition.onerror = event => {
+        if (event.error === 'no-speech' && isRecording) return;
+        const messages = {
+          'not-allowed': 'Microphone permission was blocked. Allow microphone access in Chrome, or use the typing option below.',
+          'audio-capture': 'No microphone was found. Connect one, or use the typing option below.',
+          'network': 'Chrome could not reach its speech recognition service. You can continue by typing your response.'
+        };
+        els.speechAlert.textContent = messages[event.error] || `Speech recognition stopped (${event.error}). You can try again or type your response.`;
+        els.speechAlert.classList.add('show');
+        if (['not-allowed', 'audio-capture', 'network'].includes(event.error)) {
+          shouldRestartRecognition = false;
+          isRecording = false;
+          stopTimer();
+          setRecordingUI(false);
+          els.fallbackMode.classList.add('show');
+        }
+      };
+
+      recognition.onend = () => {
+        if (shouldRestartRecognition && isRecording) {
+          try { recognition.start(); } catch (_) { /* Chrome may still be closing the previous session. */ }
+        }
+      };
+    }
+
+    function renderLiveTranscript() {
+      els.transcript.classList.remove('empty');
+      const finalPart = escapeHTML(finalTranscript);
+      const interimPart = interimTranscript ? `<span class="interim">${escapeHTML(interimTranscript)}</span>` : '';
+      els.transcript.innerHTML = finalPart + (finalPart && interimPart ? ' ' : '') + interimPart;
+      els.transcript.scrollTop = els.transcript.scrollHeight;
+    }
+
+    function setRecordingUI(active) {
+      els.recorderPanel.classList.toggle('is-recording', active);
+      els.micButton.classList.toggle('active', active);
+      els.micButton.setAttribute('aria-label', active ? 'Stop and analyze recording' : 'Start recording');
+      els.statusText.textContent = active ? 'Listening continuously' : 'Ready when you are';
+      els.controlHint.textContent = active ? 'Press to stop and see feedback' : 'Press to start a new response';
+    }
+
+    function startRecognition() {
+      if (!recognition) return;
+      speechSynthesis.cancel();
+      finalTranscript = '';
+      interimTranscript = '';
+      elapsedSeconds = 0;
+      els.feedbackPanel.hidden = true;
+      els.speechAlert.classList.remove('show');
+      els.nudge.textContent = '';
+      isRecording = true;
+      shouldRestartRecognition = true;
+      setRecordingUI(true);
+      startTimer();
+      try { recognition.start(); }
+      catch (_) {
+        setTimeout(() => { if (isRecording) { try { recognition.start(); } catch (error) { showRecognitionFailure(); } } }, 350);
+      }
+    }
+
+    function showRecognitionFailure() {
+      isRecording = false;
+      shouldRestartRecognition = false;
+      stopTimer();
+      setRecordingUI(false);
+      els.speechAlert.textContent = 'Speech recognition could not start. Check microphone permission, or use the typing option below.';
+      els.speechAlert.classList.add('show');
+      els.fallbackMode.classList.add('show');
+    }
+
+    function stopRecognition(analyze = true) {
+      if (!isRecording && !shouldRestartRecognition) return;
+      shouldRestartRecognition = false;
+      isRecording = false;
+      stopTimer();
+      setRecordingUI(false);
+      if (recognition) { try { recognition.stop(); } catch (_) { /* Already stopped. */ } }
+      if (analyze) {
+        const text = `${finalTranscript} ${interimTranscript}`.trim();
+        if (text) finishResponse(text);
+        else {
+          els.nudge.textContent = 'I did not catch any words yet. Try again, move closer to the microphone, or type your answer.';
+          els.fallbackMode.classList.add('show');
+        }
+      }
+    }
+
+    function cleanWords(text) {
+      return text.match(/[A-Za-z]+(?:['’-][A-Za-z]+)*/g) || [];
+    }
+
+    function countSentences(text) {
+      const punctuated = text.split(/[.!?]+(?:\s|$)/).map(s => s.trim()).filter(Boolean).length;
+      if (punctuated > 1) return punctuated;
+      const words = cleanWords(text).length;
+      return words ? Math.max(1, Math.round(words / 22)) : 0;
+    }
+
+    function findStructure(text) {
+      const lower = text.toLowerCase();
+      const used = {};
+      Object.entries(toolkit).forEach(([category, phrases]) => {
+        used[category] = phrases.map(normalizePhrase).filter(phrase => lower.includes(phrase.toLowerCase()));
+      });
+      return used;
+    }
+
+    function countFillers(text) {
+      const pattern = new RegExp(`\\b(?:${fillerTerms.map(escapeRegex).join('|')})\\b`, 'gi');
+      return (text.match(pattern) || []).length;
+    }
+
+    function escapeRegex(value) { return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+
+    function highlightTranscript(text, structureUsed) {
+      const items = [
+        ...fillerTerms.map(term => ({ term, type: 'filler' })),
+        ...Object.values(structureUsed).flat().map(term => ({ term, type: 'structure' })),
+        ...findAdvancedAlternatives(text).map(([term, alternatives]) => ({ term, type: 'advanced', alternatives }))
+      ].sort((a, b) => b.term.length - a.term.length);
+      if (!items.length) return escapeHTML(text);
+      const pattern = new RegExp(`\\b(${items.map(item => escapeRegex(item.term)).join('|')})\\b`, 'gi');
+      let cursor = 0;
+      let html = '';
+      for (const match of text.matchAll(pattern)) {
+        html += escapeHTML(text.slice(cursor, match.index));
+        const found = items.find(item => item.term.toLowerCase() === match[0].toLowerCase());
+        html += found.type === 'advanced'
+          ? `<button class="vocab-highlight" type="button" data-vocab="${encodeURIComponent(found.term)}" aria-label="Show advanced alternatives for ${escapeHTML(match[0])}">${escapeHTML(match[0])}</button>`
+          : `<mark class="${found.type}">${escapeHTML(match[0])}</mark>`;
+        cursor = match.index + match[0].length;
+      }
+      return html + escapeHTML(text.slice(cursor));
+    }
+
+    function openVocabPopover(button) {
+      const phrase = decodeURIComponent(button.dataset.vocab || '');
+      const entry = Object.entries(advancedLanguageMap).find(([key]) => key.toLowerCase() === phrase.toLowerCase());
+      if (!entry) return;
+      const alternatives = entry[1];
+      els.vocabPopover.innerHTML = `<strong>Instead of “${escapeHTML(button.textContent)}”</strong>${alternatives.map(escapeHTML).join(' · ')}`;
+      els.vocabPopover.hidden = false;
+      const rect = button.getBoundingClientRect();
+      const popoverWidth = els.vocabPopover.offsetWidth;
+      const popoverHeight = els.vocabPopover.offsetHeight;
+      const left = Math.min(Math.max(10, rect.left), window.innerWidth - popoverWidth - 10);
+      const fitsBelow = rect.bottom + 8 + popoverHeight <= window.innerHeight - 10;
+      const top = fitsBelow ? rect.bottom + 8 : Math.max(10, rect.top - popoverHeight - 8);
+      els.vocabPopover.style.left = `${left}px`;
+      els.vocabPopover.style.top = `${top}px`;
+    }
+
+    function closeVocabPopover() {
+      if (els.vocabPopover) els.vocabPopover.hidden = true;
+    }
+
+    function findAdvancedAlternatives(text) {
+      return Object.entries(advancedLanguageMap)
+        .sort(([a], [b]) => b.length - a.length)
+        .filter(([phrase]) => new RegExp(`\\b${escapeRegex(phrase)}\\b`, 'i').test(text));
+    }
+
+    async function requestLanguageFeedback(text) {
+      if (languageRequestController) languageRequestController.abort();
+      languageRequestController = new AbortController();
+      const controller = languageRequestController;
+      const timeout = setTimeout(() => controller.abort(), 15000);
+      els.grammarStatus.className = 'language-status loading';
+      els.grammarStatus.textContent = 'Checking grammar and wording…';
+      els.grammarList.hidden = true;
+      els.grammarList.innerHTML = '';
+
+      try {
+        const body = new URLSearchParams({ text, language: 'en-US' });
+        const response = await fetch('https://api.languagetool.org/v2/check', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+          body: body.toString(),
+          signal: controller.signal
+        });
+        if (!response.ok) {
+          const error = new Error(`LanguageTool returned ${response.status}`);
+          error.status = response.status;
+          throw error;
+        }
+        const data = await response.json();
+        const issues = Array.isArray(data.matches) ? data.matches : [];
+        if (!issues.length) {
+          els.grammarStatus.className = 'language-status';
+          els.grammarStatus.textContent = 'LanguageTool did not find any grammar or wording issues.';
+          return;
+        }
+        els.grammarList.innerHTML = issues.map(issue => {
+          const phrase = text.slice(issue.offset, issue.offset + issue.length) || 'this position in the sentence';
+          const suggestions = (issue.replacements || []).slice(0, 3).map(item => item.value).filter(Boolean);
+          const correction = suggestions.length ? suggestions.map(escapeHTML).join(' · ') : 'review this wording';
+          return `<li class="language-item">You said: <q>${escapeHTML(phrase)}</q> → <span class="correction">Consider: ${correction}</span><span class="language-reason">${escapeHTML(issue.message || 'LanguageTool suggests reviewing this part.')}</span></li>`;
+        }).join('');
+        els.grammarStatus.className = 'language-status';
+        els.grammarStatus.textContent = `${issues.length} possible language issue${issues.length === 1 ? '' : 's'} found. Review each suggestion in context.`;
+        els.grammarList.hidden = false;
+      } catch (error) {
+        if (error.name === 'AbortError' && languageRequestController !== controller) return;
+        els.grammarStatus.className = 'language-status';
+        els.grammarStatus.textContent = error.status === 429
+          ? 'LanguageTool is receiving too many requests right now. Your other feedback is still available—try the grammar check again with your next response.'
+          : 'The grammar check could not connect to LanguageTool. Your other feedback is still available, and nothing else has been interrupted.';
+      } finally {
+        clearTimeout(timeout);
+        if (languageRequestController === controller) languageRequestController = null;
+      }
+    }
+
+    function showGeminiKeyPrompt() {
+      elevatedResponseText = '';
+      els.elevatedStatus.className = 'language-status';
+      els.elevatedStatus.textContent = 'Add your free Gemini API key to generate a polished C1 comparison.';
+      els.elevatedCopy.hidden = true;
+      els.elevatedCopy.textContent = '';
+      els.addGeminiKeyButton.hidden = false;
+      els.copyElevatedButton.hidden = true;
+    }
+
+    function updateGeminiKeyUI(message = '') {
+      els.geminiApiKey.value = geminiApiKey;
+      els.removeGeminiKey.disabled = !geminiApiKey;
+      els.geminiKeyStatus.innerHTML = message || (geminiApiKey
+        ? 'Key saved on this device. It is used only when generating your C1 rewrite.'
+        : 'Used only for C1 rewrites and saved in this browser\'s local storage. Get a free key from <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener noreferrer">Google AI Studio</a>.');
+    }
+
+    function loadSavedGeminiKey() {
+      try {
+        geminiApiKey = localStorage.getItem(GEMINI_KEY_STORAGE) || '';
+        updateGeminiKeyUI();
+      } catch (_) {
+        geminiApiKey = '';
+        updateGeminiKeyUI('This browser blocked local key storage. You can still use a key until this page is refreshed.');
+      }
+    }
+
+    function saveGeminiKeyToDevice() {
+      const key = els.geminiApiKey.value.trim();
+      if (!key) {
+        updateGeminiKeyUI('Paste an API key before saving.');
+        els.geminiApiKey.focus();
+        return;
+      }
+      geminiApiKey = key;
+      try {
+        localStorage.setItem(GEMINI_KEY_STORAGE, key);
+        updateGeminiKeyUI('Key saved on this device. It is used only when generating your C1 rewrite.');
+      } catch (_) {
+        updateGeminiKeyUI('The key is ready for this session, but this browser did not allow it to be saved.');
+      }
+      if (lastCompletedTranscript && !els.feedbackPanel.hidden) requestGeminiRewrite(lastCompletedTranscript);
+    }
+
+    function removeGeminiKeyFromDevice() {
+      geminiApiKey = '';
+      els.geminiApiKey.value = '';
+      try { localStorage.removeItem(GEMINI_KEY_STORAGE); } catch (_) { /* Storage may be unavailable. */ }
+      updateGeminiKeyUI('Key removed from this device.');
+      if (geminiRequestController) {
+        geminiRequestController.abort();
+        geminiRequestController = null;
+      }
+      showGeminiKeyPrompt();
+    }
+
+    function openGeminiSettings() {
+      els.settingsMenu.open = true;
+      setTimeout(() => els.geminiApiKey.focus(), 0);
+    }
+
+    async function requestGeminiRewrite(text) {
+      if (!geminiApiKey) {
+        showGeminiKeyPrompt();
+        return;
+      }
+      if (geminiRequestController) geminiRequestController.abort();
+      geminiRequestController = new AbortController();
+      const controller = geminiRequestController;
+      const timeout = setTimeout(() => controller.abort(), 25000);
+      elevatedResponseText = '';
+      els.elevatedStatus.className = 'language-status loading';
+      els.elevatedStatus.textContent = 'Elevating your response to C1 level…';
+      els.elevatedCopy.hidden = true;
+      els.addGeminiKeyButton.hidden = true;
+      els.copyElevatedButton.hidden = true;
+
+      try {
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-goog-api-key': geminiApiKey
+          },
+          body: JSON.stringify({
+            contents: [{
+              role: 'user',
+              parts: [{ text: `${GEMINI_REWRITE_INSTRUCTION}\n\nSpoken response:\n${text}` }]
+            }],
+            generationConfig: {
+              temperature: 0.35,
+              maxOutputTokens: 1200,
+              thinkingConfig: { thinkingLevel: 'low' }
+            }
+          }),
+          signal: controller.signal
+        });
+        if (!response.ok) {
+          const error = new Error(`Gemini returned ${response.status}`);
+          error.status = response.status;
+          throw error;
+        }
+        const data = await response.json();
+        const rewritten = (data.candidates?.[0]?.content?.parts || [])
+          .map(part => part.text || '')
+          .join(' ')
+          .replace(/\s+/g, ' ')
+          .trim();
+        if (!rewritten) throw new Error('Gemini returned no rewrite');
+        elevatedResponseText = rewritten;
+        els.elevatedCopy.textContent = rewritten;
+        els.elevatedCopy.hidden = false;
+        els.elevatedStatus.className = 'language-status';
+        els.elevatedStatus.textContent = 'AI-generated C1 comparison ready. Check that it still sounds like you.';
+        els.copyElevatedButton.hidden = false;
+      } catch (error) {
+        if (error.name === 'AbortError' && geminiRequestController !== controller) return;
+        const keyError = [400, 401, 403].includes(error.status);
+        els.elevatedStatus.className = 'language-status';
+        els.elevatedStatus.textContent = keyError
+          ? 'Gemini could not use this API key. Check that it was copied correctly and that Gemini API access is enabled.'
+          : error.status === 429
+            ? 'The Gemini free-tier limit is busy or has been reached. Your other feedback is still available—try again later.'
+            : 'The AI rewrite could not be generated because of a network or service problem. The rest of your feedback is unaffected.';
+        els.addGeminiKeyButton.hidden = false;
+      } finally {
+        clearTimeout(timeout);
+        if (geminiRequestController === controller) geminiRequestController = null;
+      }
+    }
+
+    async function copyElevatedResponse() {
+      if (!elevatedResponseText) return;
+      try {
+        await navigator.clipboard.writeText(elevatedResponseText);
+      } catch (_) {
+        const helper = document.createElement('textarea');
+        helper.value = elevatedResponseText;
+        helper.style.position = 'fixed';
+        helper.style.opacity = '0';
+        document.body.appendChild(helper);
+        helper.select();
+        document.execCommand('copy');
+        helper.remove();
+      }
+      els.copyElevatedButton.textContent = 'Copied';
+      setTimeout(() => { els.copyElevatedButton.textContent = 'Copy'; }, 1400);
+    }
+
+    function analyzeResponse(text, seconds) {
+      const words = cleanWords(text).length;
+      const sentences = countSentences(text);
+      const structureUsed = findStructure(text);
+      const usedCategories = Object.keys(structureUsed).filter(category => structureUsed[category].length);
+      const fillerCount = countFillers(text);
+      const paragraphs = text.split(/\n\s*\n/).filter(part => cleanWords(part).length > 4).length;
+      const avgSentenceLength = sentences ? words / sentences : words;
+      const developmentSignals = (paragraphs >= 2 ? 1 : 0) + (usedCategories.length >= 2 ? 1 : 0) + (sentences >= 6 ? 1 : 0) + (words >= 140 ? 1 : 0) + (avgSentenceLength >= 16 && sentences >= 4 ? 1 : 0);
+      const depth = developmentSignals >= 3 ? 'developed' : developmentSignals >= 2 ? 'emerging' : 'flat';
+      const pace = seconds >= 5 ? Math.round(words / (seconds / 60)) : 0;
+      return { words, sentences, pace, fillerCount, structureUsed, usedCategories, paragraphs, depth, avgSentenceLength };
+    }
+
+    function finishResponse(text, source = 'speech') {
+      stopTimer();
+      text = text.replace(/\s+/g, ' ').replace(/\s+([,.!?])/g, '$1').trim();
+      lastCompletedTranscript = text;
+      const analysis = analyzeResponse(text, elapsedSeconds);
+      els.transcript.classList.remove('empty');
+      els.transcript.innerHTML = highlightTranscript(text, analysis.structureUsed);
+      els.wordMetric.textContent = analysis.words;
+      els.sentenceMetric.textContent = analysis.sentences;
+      els.paceMetric.textContent = analysis.pace || '—';
+      els.fillerMetric.textContent = analysis.fillerCount;
+      els.responseKind.textContent = responseType === 'follow-up' ? 'Follow-up response' : 'Main response';
+
+      const depthMessages = {
+        developed: 'This response shows several development signals: multiple points, sustained explanation, or clear transitions. Keep the links between ideas explicit.',
+        emerging: 'There is some development, but the answer could feel more layered. Add a distinct second angle, a concrete example, or a counterargument.',
+        flat: 'The response reads as one main block of thought. Divide it into a position, two distinct reasons, an example, a counterpoint, and a conclusion.'
+      };
+      els.depthFeedback.textContent = depthMessages[analysis.depth];
+      const missing = Object.keys(toolkit).filter(category => !analysis.usedCategories.includes(category));
+      els.structureFeedback.textContent = analysis.usedCategories.length
+        ? `Used ${analysis.usedCategories.length} of 5 signposting functions. Highlighted phrases are shown in green in your transcript.`
+        : 'No toolkit phrases were detected. Natural alternatives are valid, but an explicit signpost can make a long answer easier to follow.';
+      els.categoryChips.innerHTML = Object.keys(toolkit).map(category => `<span class="category-chip ${analysis.usedCategories.includes(category) ? 'used' : 'missing'}">${categoryNames[category]} · ${analysis.usedCategories.includes(category) ? 'used' : 'try next'}</span>`).join('');
+
+      if (analysis.words < 120) {
+        const suggestions = ['a limitation of your view', 'a concrete example', 'the strongest opposing view', 'how the answer changes in another context'];
+        const suggestion = suggestions[(currentPrompt.id + session.length) % suggestions.length];
+        els.shortFlag.hidden = false;
+        els.shortFlag.textContent = `At ${analysis.words} words, this is shorter than a typical extended response. Continue with ${suggestion}.`;
+      } else {
+        els.shortFlag.hidden = true;
+      }
+      if (source === 'typed' && !elapsedSeconds) els.nudge.textContent = 'Response captured without timing. Start the timer next time if you want a pace estimate.';
+      else if (elapsedSeconds < 90) els.nudge.textContent = `${source === 'typed' ? 'Your timed response ran' : 'You spoke for'} ${formatTime(elapsedSeconds)}. Try extending toward 01:30–02:30 with another reason, example, or qualification.`;
+      else els.nudge.textContent = 'A sustained response—well done. Use the feedback below to make the next one even clearer.';
+
+      currentProbe = probes[(currentPrompt.id * 3 + session.length) % probes.length];
+      els.probeQuestion.textContent = currentProbe;
+      els.probeBox.hidden = responseType === 'follow-up';
+      els.feedbackPanel.hidden = false;
+      requestLanguageFeedback(text);
+      requestGeminiRewrite(text);
+      session.push({
+        promptId: currentPrompt.id,
+        promptTitle: currentPrompt.title,
+        type: responseType,
+        wordCount: analysis.words,
+        duration: elapsedSeconds,
+        fillerCount: analysis.fillerCount,
+        categories: analysis.usedCategories
+      });
+      updateSessionUI();
+      setTimeout(() => els.feedbackPanel.scrollIntoView({ behavior: 'smooth', block: 'start' }), 80);
+    }
+
+    function answerProbe() {
+      responseType = 'follow-up';
+      resetRecorder();
+      els.promptContext.textContent = currentProbe;
+      els.promptContext.classList.add('show');
+      els.statusText.textContent = 'Ready for your follow-up';
+      els.recorderPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      speak(currentProbe);
+    }
+
+    function retryPrompt() {
+      responseType = 'main';
+      currentProbe = '';
+      els.promptContext.classList.remove('show');
+      resetRecorder();
+      els.recorderPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function updateSessionUI() {
+      const average = session.length ? Math.round(session.reduce((sum, item) => sum + item.wordCount, 0) / session.length) : 0;
+      els.headerCount.textContent = session.length;
+      els.pickerCount.textContent = session.length;
+      els.miniResponses.textContent = session.length;
+      els.miniAverage.textContent = session.length ? average : '—';
+    }
+
+    function renderSummary() {
+      showView('summaryView');
+      if (!session.length) {
+        els.summaryContent.innerHTML = `<div class="panel empty-session"><h2>No responses yet</h2><p>Choose a prompt and complete a response to see your session patterns.</p></div>`;
+        return;
+      }
+      const uniquePrompts = new Set(session.map(item => item.promptId)).size;
+      const avgWords = Math.round(session.reduce((sum, item) => sum + item.wordCount, 0) / session.length);
+      const timedResponses = session.filter(item => item.duration > 0);
+      const avgDuration = timedResponses.length ? Math.round(timedResponses.reduce((sum, item) => sum + item.duration, 0) / timedResponses.length) : 0;
+      const maxFiller = Math.max(...session.map(item => item.fillerCount), 1);
+      const categoryCounts = Object.fromEntries(Object.keys(toolkit).map(category => [category, session.filter(item => item.categories.includes(category)).length]));
+      const firstFiller = session[0].fillerCount;
+      const lastFiller = session[session.length - 1].fillerCount;
+      const trendText = session.length < 2 ? 'Add another response to reveal a trend.' : lastFiller < firstFiller ? 'Trending down across the session.' : lastFiller > firstFiller ? 'Trending up—slow down and use a silent pause.' : 'Holding steady across the session.';
+      els.summaryContent.innerHTML = `
+        <div class="summary-grid">
+          <section class="panel summary-card"><h2>Prompts practised</h2><div class="big-number">${uniquePrompts}</div><div class="big-caption">${session.length} total response${session.length === 1 ? '' : 's'}, including follow-ups</div></section>
+          <section class="panel summary-card"><h2>Average response</h2><div class="big-number">${avgWords}</div><div class="big-caption">words · ${avgDuration ? `about ${formatTime(avgDuration)}` : 'not timed'}</div></section>
+          <section class="panel summary-card"><h2>Structure coverage</h2><div class="big-number">${Object.values(categoryCounts).filter(Boolean).length}/5</div><div class="big-caption">categories used at least once</div></section>
+          <section class="panel summary-card wide"><h2>Filler-count trend</h2><div class="trend-bars" aria-label="Filler count by response">${session.map(item => `<div class="trend-bar" style="height:${Math.max(8, item.fillerCount / maxFiller * 94)}px" title="${item.fillerCount} fillers"><span>${item.fillerCount}</span></div>`).join('')}</div><div class="big-caption">${trendText}</div></section>
+          <section class="panel summary-card"><h2>Category coverage</h2>${Object.keys(toolkit).map(category => `<div class="coverage-row"><span>${categoryNames[category]}</span><div class="coverage-track"><div class="coverage-fill" style="width:${categoryCounts[category] / session.length * 100}%"></div></div><span>${categoryCounts[category]}</span></div>`).join('')}</section>
+          <section class="panel summary-card wide"><h2>Response log</h2><div class="history-list">${session.slice().reverse().map(item => `<div class="history-item"><div><strong>${escapeHTML(item.promptTitle)}</strong><span>${item.type === 'follow-up' ? 'Follow-up' : 'Main response'} · ${item.categories.length ? item.categories.map(category => categoryNames[category]).join(', ') : 'No toolkit phrases detected'}</span></div><div class="history-meta"><strong>${item.wordCount} words</strong><span>${formatTime(item.duration)} · ${item.fillerCount} fillers</span></div></div>`).join('')}</div></section>
+        </div>`;
+    }
+
+    function toggleTheme() {
+      const dark = document.documentElement.dataset.theme === 'dark';
+      document.documentElement.dataset.theme = dark ? 'light' : 'dark';
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', dark ? '#f4f7fb' : '#0d1320');
+      els.themeToggle.setAttribute('aria-label', dark ? 'Switch to dark mode' : 'Switch to light mode');
+      els.themeIcon.innerHTML = dark
+        ? '<path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>'
+        : '<circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>';
+    }
+
+    els.promptGrid.addEventListener('click', event => {
+      const card = event.target.closest('[data-prompt-id]');
+      if (card) openPrompt(card.dataset.promptId);
+    });
+    els.backButton.addEventListener('click', () => { stopRecognition(false); speechSynthesis.cancel(); showView('pickerView'); });
+    els.nextPromptButton.addEventListener('click', () => { speechSynthesis.cancel(); showView('pickerView'); });
+    els.returnToPrompts.addEventListener('click', () => showView('pickerView'));
+    els.summaryButton.addEventListener('click', () => { stopRecognition(false); speechSynthesis.cancel(); renderSummary(); });
+    els.listenButton.addEventListener('click', () => speak(responseType === 'follow-up' ? currentProbe : currentPrompt.question));
+    els.micButton.addEventListener('click', () => isRecording ? stopRecognition(true) : startRecognition());
+    els.retryButton.addEventListener('click', retryPrompt);
+    els.answerProbeButton.addEventListener('click', answerProbe);
+    els.themeToggle.addEventListener('click', toggleTheme);
+    els.transcript.addEventListener('click', event => {
+      const target = event.target.closest('.vocab-highlight');
+      if (target) openVocabPopover(target);
+    });
+    els.voiceSelect.addEventListener('change', event => {
+      selectedVoiceURI = event.target.value;
+      const voice = getSelectedVoice();
+      els.voiceNote.textContent = voice
+        ? `Using ${voice.name} (${voice.lang}) for this session.`
+        : 'Using the browser default voice for this session.';
+    });
+    document.addEventListener('click', event => {
+      const openedSettings = event.target.closest('#addGeminiKeyButton');
+      if (els.settingsMenu.open && !els.settingsMenu.contains(event.target) && !openedSettings) els.settingsMenu.open = false;
+      if (!event.target.closest('.vocab-highlight') && !els.vocabPopover.contains(event.target)) closeVocabPopover();
+    });
+    window.addEventListener('scroll', closeVocabPopover, true);
+    window.addEventListener('resize', closeVocabPopover);
+    document.addEventListener('keydown', event => { if (event.key === 'Escape') closeVocabPopover(); });
+    els.saveGeminiKey.addEventListener('click', saveGeminiKeyToDevice);
+    els.removeGeminiKey.addEventListener('click', removeGeminiKeyFromDevice);
+    els.addGeminiKeyButton.addEventListener('click', openGeminiSettings);
+    els.copyElevatedButton.addEventListener('click', copyElevatedResponse);
+    els.toolkitToggle.addEventListener('click', () => {
+      const willOpen = els.toolkitBody.hidden;
+      els.toolkitBody.hidden = !willOpen;
+      els.toolkitToggle.setAttribute('aria-expanded', String(willOpen));
+      els.toolkitChevron.textContent = willOpen ? '−' : '＋';
+    });
+    els.typeTimerButton.addEventListener('click', () => {
+      typingTimerActive = !typingTimerActive;
+      if (typingTimerActive) {
+        elapsedSeconds = 0;
+        startTimer();
+        els.typeTimerButton.textContent = 'Pause timer';
+        els.statusText.textContent = 'Timed response in progress';
+      } else {
+        stopTimer();
+        els.typeTimerButton.textContent = 'Resume timer';
+        els.statusText.textContent = 'Timer paused';
+      }
+    });
+    els.analyzeTypedButton.addEventListener('click', () => {
+      const text = els.fallbackText.value.trim();
+      if (!text) {
+        els.nudge.textContent = 'Type a response first, then choose Analyze response.';
+        return;
+      }
+      typingTimerActive = false;
+      stopTimer();
+      finishResponse(text, 'typed');
+    });
+    window.addEventListener('beforeunload', () => { if (recognition) recognition.abort(); speechSynthesis.cancel(); });
+
+    renderPromptGrid();
+    renderToolkit();
+    updateSessionUI();
+    loadSavedGeminiKey();
+    if ('speechSynthesis' in window) {
+      loadVoices();
+      speechSynthesis.addEventListener('voiceschanged', loadVoices);
+    }
+    setupRecognition();
+  </script>
+</body>
+</html>
